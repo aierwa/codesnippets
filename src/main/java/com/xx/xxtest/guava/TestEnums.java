@@ -1,7 +1,6 @@
 package com.xx.xxtest.guava;
 
 import com.google.common.base.Enums;
-import com.google.common.base.Optional;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
