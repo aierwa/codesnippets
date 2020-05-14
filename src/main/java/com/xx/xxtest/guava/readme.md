@@ -1,3 +1,4 @@
+https://github.com/google/guava/wiki
 
 ### Enums.getIfPresent(Class<T> enumClass, String value)
 1. checkNotNull 参数判空
@@ -12,3 +13,14 @@
 ### Stopwatch
 - 非线程安全
 - isRunning，elapsedNanos，startTick 等几个成员变量来控制流程以及获取信息
+
+## cache
+cache<k,v> 为接口，AbstractCache 为抽象类实现
+
+AbstractCache 实现了一些批量操作，如 getAllPresent，putAll 等，其他方法抛出 UnsupportedOperationException 让子类去实现，
+其内部还定义了 StatsCounter 状态统计接口，并提供了简单实现 SimpleStatsCounter 
+
+使用 Builder 模式进行对象创建，好处是可设置需要的参数即可，以及 build() 时进行参数关系校验，
+recordStats() 表示要进行记录统计数据（Builder 本来绑定了一个不做任何操作的 StatsCounter，调用这个方法后，绑定到一个 SimpleStatsCounter 中）
+
+具体数据存储是通过 LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 进行的。
